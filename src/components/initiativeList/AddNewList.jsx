@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Container, Grid } from '@mui/material';
+import Grid from '@mui/material/Grid';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
@@ -40,44 +40,37 @@ export default function AddNewList({ addItem }) {
   }
 
   return (
-    <Container
-      component="form"
-      sx={{ mt: 1, p: 2, borderRadius: 2, bgcolor: 'background.paper' }}
-      maxWidth="md"
-      onSubmit={handleSubmit(pushData)}
-    >
-      <Grid container spacing={1}>
-        <Grid item xs={12} sm={12} md={8}>
-          <Title text="NOME DO PERSONAGEM" />
-        </Grid>
-        <Grid item xs={12} sm={12} md={4}>
-          <Title text="INICIATIVA" />
-        </Grid>
-
-        <Grid item xs={12} sm={12} md={8}>
-          <TextInput
-            watch={watch}
-            register={register}
-            errors={errors?.name}
-            name="name"
-            variant="standard"
-            inputRef={toFocus}
-          />
-        </Grid>
-        <Grid item xs={12} sm={12} md={4}>
-          <TextInput
-            watch={watch}
-            register={register}
-            errors={errors?.initiative}
-            name="initiative"
-            type="number"
-            variant="standard"
-          />
-        </Grid>
-        <Grid item xs={12} sm={12} md={12}>
-          <Button text="Adicionar" onClick={handleSubmit(pushData)} />
-        </Grid>
+    <Grid container spacing={1}>
+      <Grid item xs={12} sm={12} md={8}>
+        <Title text="NOME" />
       </Grid>
-    </Container>
+      <Grid item xs={12} sm={12} md={4}>
+        <Title text="INICIATIVA" />
+      </Grid>
+
+      <Grid item xs={12} sm={12} md={8}>
+        <TextInput
+          watch={watch}
+          register={register}
+          errors={errors?.name}
+          name="name"
+          variant="standard"
+          inputRef={toFocus}
+        />
+      </Grid>
+      <Grid item xs={12} sm={12} md={4}>
+        <TextInput
+          watch={watch}
+          register={register}
+          errors={errors?.initiative}
+          name="initiative"
+          type="number"
+          variant="standard"
+        />
+      </Grid>
+      <Grid item xs={12} sm={12} md={12}>
+        <Button text="Adicionar" onClick={handleSubmit(pushData)} />
+      </Grid>
+    </Grid>
   );
 }

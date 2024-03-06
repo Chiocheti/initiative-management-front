@@ -8,7 +8,7 @@ export default function Title({ text }) {
         sx={{ color: 'primary.contrastText' }}
         bgcolor="paper"
         component="h3"
-        variant="h5"
+        variant="subtitle1"
         textAlign="center"
         fontWeight="bold"
       >

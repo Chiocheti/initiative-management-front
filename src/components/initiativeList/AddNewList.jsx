@@ -41,14 +41,14 @@ export default function AddNewList({ addItem }) {
 
   return (
     <Grid container spacing={1}>
-      <Grid item xs={12} sm={12} md={8}>
+      <Grid item xs={6} sm={8} md={8}>
         <Title text="NOME" />
       </Grid>
-      <Grid item xs={12} sm={12} md={4}>
+      <Grid item xs={6} sm={4} md={4}>
         <Title text="INICIATIVA" />
       </Grid>
 
-      <Grid item xs={12} sm={12} md={8}>
+      <Grid item xs={6} sm={8} md={8}>
         <TextInput
           watch={watch}
           register={register}
@@ -58,7 +58,7 @@ export default function AddNewList({ addItem }) {
           inputRef={toFocus}
         />
       </Grid>
-      <Grid item xs={12} sm={12} md={4}>
+      <Grid item xs={6} sm={4} md={4}>
         <TextInput
           watch={watch}
           register={register}

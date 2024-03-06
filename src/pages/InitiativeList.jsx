@@ -7,6 +7,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { useState } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import * as Yup from 'yup';
@@ -98,8 +99,8 @@ export default function InitiativeList() {
   }
 
   return (
-    <Box display="flex">
-      <Box width="30vw" mx={1}>
+    <Box display={useMediaQuery('(min-width:900px)') ? 'flex' : 'block'}>
+      <Box width={useMediaQuery('(min-width:900px)') ? '30vw' : null} mx={1}>
         <Container component="form" sx={{ my: 1, p: 2, borderRadius: 2, bgcolor: 'background.paper' }} maxWidth="md">
           <AddNewList addItem={addItem} />
         </Container>
@@ -119,7 +120,7 @@ export default function InitiativeList() {
         ) : null}
       </Box>
 
-      <Box width="70vw" mx={1}>
+      <Box width={useMediaQuery('(min-width:900px)') ? '70vw' : null} mx={1}>
         {fieldsInitiatives.map((field, index) => (
           <Container
             sx={{
@@ -134,7 +135,7 @@ export default function InitiativeList() {
             key={field.id}
           >
             <Grid container spacing={1}>
-              <Grid item xs={12} sm={12} md={2} textAlign="center">
+              <Grid item xs={4} sm={3} md={2} textAlign="center">
                 <ButtonGroup variant="text" size="large">
                   <IconButton onClick={() => removeInitiative(index)}>
                     <DeleteIcon color="error" />
@@ -153,7 +154,7 @@ export default function InitiativeList() {
                   ) : null}
                 </ButtonGroup>
               </Grid>
-              <Grid item xs={12} sm={12} md={7}>
+              <Grid item xs={4} sm={6} md={7}>
                 <TextInput
                   watch={watch}
                   register={register}
@@ -166,7 +167,7 @@ export default function InitiativeList() {
                   focused={order === index}
                 />
               </Grid>
-              <Grid item xs={12} sm={12} md={2}>
+              <Grid item xs={4} sm={3} md={2}>
                 <TextInput
                   watch={watch}
                   register={register}

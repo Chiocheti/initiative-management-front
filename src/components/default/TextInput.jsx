@@ -9,7 +9,6 @@ export default function TextInput({ watch, register, errors, name, label, varian
       fullWidth
       focused={focused}
       error={!!errors}
-      helperText={errors?.message}
       InputLabelProps={{
         shrink: !!watch(name),
         color: 'primary',

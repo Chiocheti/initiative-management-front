@@ -147,7 +147,7 @@ export default function AddNewList({ addItem }) {
           </Grid>
 
           <Grid item xs={12} sm={12} md={10}>
-            <Button text="add" onClick={handleSubmit(pushData)} />
+            <Button text="adicionar" onClick={handleSubmit(pushData)} />
           </Grid>
         </Grid>
       </Container>

@@ -110,17 +110,15 @@ export default function InitiativeList() {
         <AddNewList addItem={addItem} />
 
         {fieldsAdventures.length > 0 ? (
-          <Container component="form" sx={{ my: 1, p: 2, borderRadius: 2, bgcolor: 'background.paper' }} maxWidth="md">
-            <Grid container spacing={1}>
-              <Grid item xs={12} sm={12} md={6}>
-                <Button text="PRoximo" onClick={pushOrder} />
-              </Grid>
-
-              <Grid item xs={12} sm={12} md={6}>
-                <Button text="limpar" onClick={() => resetField('adventures')} />
-              </Grid>
+          <Grid container spacing={1}>
+            <Grid item xs={6} sm={6} md={6}>
+              <Button text="PROXIMO" onClick={pushOrder} />
             </Grid>
-          </Container>
+
+            <Grid item xs={6} sm={6} md={6}>
+              <Button text="LIMPAR" onClick={() => resetField('adventures')} />
+            </Grid>
+          </Grid>
         ) : null}
       </Box>
 

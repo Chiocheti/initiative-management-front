@@ -9,6 +9,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { useFieldArray, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
@@ -90,23 +91,33 @@ export default function AddNewList({ addItem }) {
     <>
       <Container component="form" sx={{ my: 1, p: 2, borderRadius: 2, bgcolor: 'background.paper' }} maxWidth="md">
         <Grid container>
-          <Grid item xs={8} sm={4} md={6} />
-          <Grid item xs={8} sm={4} md={2} textAlign="center">
+          <Grid item xs={6} sm={6} md={6}>
+            <Typography
+              sx={{ color: 'primary.contrastText' }}
+              component="h3"
+              textAlign="center"
+              fontWeight="bold"
+              fontSize="20px"
+            >
+              NOME
+            </Typography>
+          </Grid>
+          <Grid item xs={2} sm={2} md={2} textAlign="center">
             <PushPinIcon color="info" />
           </Grid>
-          <Grid item xs={8} sm={4} md={2} textAlign="center">
+          <Grid item xs={2} sm={2} md={2} textAlign="center">
             <FavoriteIcon color="error" />
           </Grid>
-          <Grid item xs={8} sm={4} md={2} textAlign="center">
+          <Grid item xs={2} sm={2} md={2} textAlign="center">
             <ShieldIcon color="warning" />
           </Grid>
         </Grid>
 
         <Grid container spacing={1}>
-          <Grid item xs={12} sm={5} md={6}>
+          <Grid item xs={6} sm={6} md={6}>
             <TextInput watch={watch} register={register} errors={errors?.name} name="name" variant="standard" />
           </Grid>
-          <Grid item xs={4} sm={3} md={2}>
+          <Grid item xs={2} sm={2} md={2}>
             <TextInput
               watch={watch}
               register={register}
@@ -116,7 +127,7 @@ export default function AddNewList({ addItem }) {
               variant="standard"
             />
           </Grid>
-          <Grid item xs={4} sm={2} md={2}>
+          <Grid item xs={2} sm={2} md={2}>
             <TextInput
               watch={watch}
               register={register}
@@ -126,7 +137,7 @@ export default function AddNewList({ addItem }) {
               variant="standard"
             />
           </Grid>
-          <Grid item xs={4} sm={2} md={2}>
+          <Grid item xs={2} sm={2} md={2}>
             <TextInput
               watch={watch}
               register={register}
@@ -137,7 +148,7 @@ export default function AddNewList({ addItem }) {
             />
           </Grid>
 
-          <Grid item xs={12} sm={12} md={2}>
+          <Grid item xs={2} sm={1} md={2}>
             <Checkbox
               checked={save}
               icon={<SaveIcon color="primary" />}
@@ -146,7 +157,7 @@ export default function AddNewList({ addItem }) {
             />
           </Grid>
 
-          <Grid item xs={12} sm={12} md={10}>
+          <Grid item xs={10} sm={11} md={10}>
             <Button text="adicionar" onClick={handleSubmit(pushData)} />
           </Grid>
         </Grid>
@@ -155,25 +166,38 @@ export default function AddNewList({ addItem }) {
       {fieldsSavedAdventures.length > 0 ? (
         <Container component="form" sx={{ my: 1, p: 2, borderRadius: 2, bgcolor: 'background.paper' }} maxWidth="md">
           <Grid container>
-            <Grid item xs={8} sm={4} md={6.5} />
+            <Grid item xs={1.5} sm={1} md={1.5} />
 
-            <Grid item xs={8} sm={4} md={2} textAlign="center">
+            <Grid item xs={5} sm={6} md={5}>
+              <Typography
+                sx={{ color: 'primary.contrastText' }}
+                component="h3"
+                textAlign="center"
+                fontWeight="bold"
+                fontSize="20px"
+              >
+                NOME
+              </Typography>
+            </Grid>
+
+            <Grid item xs={2} sm={2} md={2} textAlign="center">
               <FavoriteIcon color="error" />
             </Grid>
-            <Grid item xs={8} sm={4} md={2} textAlign="center">
+
+            <Grid item xs={2} sm={2} md={2} textAlign="center">
               <ShieldIcon color="warning" />
             </Grid>
           </Grid>
 
           {fieldsSavedAdventures.map((field, index) => (
             <Grid key={field.id} container spacing={1}>
-              <Grid item xs={8} sm={4} md={1.5}>
+              <Grid item xs={1.5} sm={1} md={1.5}>
                 <IconButton onClick={() => removeSavedAdventure(index)}>
                   <DeleteIcon color="error" />
                 </IconButton>
               </Grid>
 
-              <Grid item xs={8} sm={4} md={5} alignSelf="center" textAlign="center">
+              <Grid item xs={5} sm={6} md={5} alignSelf="center" textAlign="center">
                 <TextInput
                   watch={watch}
                   register={register}
@@ -182,7 +206,7 @@ export default function AddNewList({ addItem }) {
                 />
               </Grid>
 
-              <Grid item xs={8} sm={4} md={2} alignSelf="center" textAlign="center">
+              <Grid item xs={2} sm={2} md={2} alignSelf="center" textAlign="center">
                 <TextInput
                   watch={watch}
                   register={register}
@@ -191,7 +215,7 @@ export default function AddNewList({ addItem }) {
                 />
               </Grid>
 
-              <Grid item xs={8} sm={4} md={2} alignSelf="center" textAlign="center">
+              <Grid item xs={2} sm={2} md={2} alignSelf="center" textAlign="center">
                 <TextInput
                   watch={watch}
                   register={register}
@@ -200,7 +224,7 @@ export default function AddNewList({ addItem }) {
                 />
               </Grid>
 
-              <Grid item xs={8} sm={4} md={1.5}>
+              <Grid item xs={1.5} sm={1} md={1.5}>
                 <IconButton onClick={() => sendSaveAdventure(index)}>
                   <PersonAddIcon color="info" />
                 </IconButton>

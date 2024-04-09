@@ -63,8 +63,8 @@ export default function InitiativeList() {
     const adventures = watch('adventures');
 
     let maxInitiative = 0;
-    adventures.forEach((initiative) => {
-      if (initiative.initiative > maxInitiative) maxInitiative = initiative.initiative;
+    adventures.forEach((adventure) => {
+      if (adventure.initiative > maxInitiative) maxInitiative = adventure.initiative;
     });
 
     const updatedList = [];
@@ -104,6 +104,14 @@ export default function InitiativeList() {
     }
   }
 
+  function handleRemoveAdventure(index) {
+    if (index === watch('adventures').length - 1) {
+      setOrder(0);
+    }
+
+    removeAdventure(index);
+  }
+
   return (
     <Box display={useMediaQuery('(min-width:900px)') ? 'flex' : 'block'}>
       <Box width={useMediaQuery('(min-width:900px)') ? '30vw' : null} mx={1}>
@@ -140,7 +148,7 @@ export default function InitiativeList() {
             <Grid container spacing={1}>
               <Grid item xs={4} sm={2} md={2} textAlign="center">
                 <ButtonGroup variant="text" size="large">
-                  <IconButton onClick={() => removeAdventure(index)}>
+                  <IconButton onClick={() => handleRemoveAdventure(index)}>
                     <DeleteIcon color="error" />
                   </IconButton>
 

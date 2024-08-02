@@ -58,7 +58,7 @@ export default function StatusList() {
     },
     {
       value: 'Desprevenido',
-      message: <p>Desprevenido: Defesa e Reflexos -5</p>,
+      message: <p>Defesa e Reflexos -5</p>,
     },
     {
       value: 'Em Chamas',
@@ -75,6 +75,10 @@ export default function StatusList() {
           Lento: Deslocamento pela metade <br /> Vulnerável: Defesa -2 <br /> Ataque -2
         </p>
       ),
+    },
+    {
+      value: 'Envenenado',
+      message: <p>Varia de acordo com o veneno</p>,
     },
     {
       value: 'Esmorecido',
@@ -95,6 +99,93 @@ export default function StatusList() {
           Fraco: Pericias Físicas -2 <br /> Vulnerável: Defesa -2
         </p>
       ),
+    },
+    {
+      value: 'Fraco',
+      message: <p>Pericias Físicas -2</p>,
+    },
+    {
+      value: 'Frustrado',
+      message: <p>Pericias Mentais -2</p>,
+    },
+    {
+      value: 'Imóvel',
+      message: <p>Descolamento = 0</p>,
+    },
+    {
+      value: 'Inconsciente',
+      message: (
+        <p>
+          Desprevenido: Defesa e Reflexos -5 <br /> Defesa -10 <br /> Falha em Reflexos <br />
+          Não pode fazer ações nem reações
+        </p>
+      ),
+    },
+    {
+      value: 'Indefeso',
+      message: (
+        <p>
+          Desprevenido: Defesa e Reflexos -5 <br /> Defesa -10 <br /> Falha em Reflexos
+        </p>
+      ),
+    },
+    {
+      value: 'Lento',
+      message: <p>Deslocamento pela metade</p>,
+    },
+    {
+      value: 'Ofuscado',
+      message: <p>Ataque e Percepção -2</p>,
+    },
+    {
+      value: 'Paralisado',
+      message: (
+        <p>
+          Imóvel: Descolamento = 0 <br /> Desprevenido: Defesa e Reflexos -5
+          <br /> Defesa -10 <br /> Só pode fazer ações mentais
+        </p>
+      ),
+    },
+    {
+      value: 'Petrificado',
+      message: (
+        <p>
+          Desprevenido: Defesa e Reflexos -5 <br /> Defesa -10 <br /> Falha em Reflexos <br />
+          Não pode fazer ações nem reações <br /> Redução de dano 8
+        </p>
+      ),
+    },
+    {
+      value: 'Sangrando',
+      message: <p>Teste de Con (CD 15) 1d6</p>,
+    },
+    {
+      value: 'Sobrecarregado',
+      message: (
+        <p>
+          Penalidade de Armadura +5 <br /> Deslocamento -3
+        </p>
+      ),
+    },
+    {
+      value: 'Surdo',
+      message: (
+        <p>
+          Percepção para ouvir = 0 <br /> Iniciativa -5
+        </p>
+      ),
+    },
+    {
+      value: 'Surpreendido',
+      message: (
+        <p>
+          Desprevenido: Defesa e Reflexos -5 <br /> Não pode fazer ações
+        </p>
+      ),
+    },
+    {
+      value: 'Vulnerável',
+      message: <p>Defesa -2</p>,
     },
   ];
 }

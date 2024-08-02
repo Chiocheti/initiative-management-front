@@ -8,7 +8,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
-import { blue, cyan } from '@mui/material/colors';
+import { green, red, yellow, cyan } from '@mui/material/colors';
 
 import Routes from './routes';
 
@@ -29,6 +29,15 @@ const theme = createTheme({
     background: {
       paper: '#253344',
       default: '#1c2837',
+    },
+    green: {
+      main: green[500],
+    },
+    yellow: {
+      main: yellow[500],
+    },
+    red: {
+      main: red[500],
     },
   },
 });

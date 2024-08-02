@@ -1,24 +1,15 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
-import DeleteIcon from '@mui/icons-material/Delete';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import PushPinIcon from '@mui/icons-material/PushPin';
-import ShieldIcon from '@mui/icons-material/Shield';
 import Box from '@mui/material/Box';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useState } from 'react';
+import Cookies from 'js-cookie';
+import { useEffect, useRef, useState } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import * as Yup from 'yup';
 
 import Button from '../components/default/Button';
-import TextInput from '../components/default/TextInput';
 import AddNewList from '../components/initiativeList/AddNewList';
+import AdventureItem from '../components/initiativeList/AdventureItem';
 
 const listSchema = Yup.object({
   adventures: Yup.array().of(
@@ -27,6 +18,7 @@ const listSchema = Yup.object({
       initiative: Yup.number().required('Digite a iniciativa do personagem'),
       life: Yup.number().required('Digite a vida do personagem'),
       armor: Yup.number().required('Digite a ca do personagem'),
+      status: Yup.array().of(Yup.string()),
     }),
   ),
 });
@@ -56,6 +48,24 @@ export default function InitiativeList() {
   });
 
   const [order, setOrder] = useState(0);
+
+  const savedAdventuresList = useRef([]);
+
+  useEffect(() => {
+    function findData() {
+      const adventures = JSON.parse(Cookies.get('adventures'));
+      savedAdventuresList.current = JSON.parse(Cookies.get('savedAdventures'));
+
+      setValue('adventures', adventures);
+    }
+
+    findData();
+  }, [setValue]);
+
+  function saveData(savedAdventures) {
+    Cookies.set('adventures', JSON.stringify(watch('adventures')));
+    Cookies.set('savedAdventures', JSON.stringify(savedAdventures));
+  }
 
   function addItem(item) {
     prependAdventure(item);
@@ -115,7 +125,7 @@ export default function InitiativeList() {
   return (
     <Box display={useMediaQuery('(min-width:900px)') ? 'flex' : 'block'}>
       <Box width={useMediaQuery('(min-width:900px)') ? '30vw' : null} mx={1}>
-        <AddNewList addItem={addItem} />
+        <AddNewList addItem={addItem} saveData={saveData} savedAdventuresList={savedAdventuresList.current} />
 
         {fieldsAdventures.length > 0 ? (
           <Grid container spacing={1}>
@@ -132,106 +142,19 @@ export default function InitiativeList() {
 
       <Box width={useMediaQuery('(min-width:900px)') ? '70vw' : null} mx={1}>
         {fieldsAdventures.map((field, index) => (
-          <Container
-            sx={{
-              my: 1,
-              p: 0.5,
-              borderRadius: 2,
-              bgcolor: 'background.paper',
-              border: order === index ? 2 : 0,
-              borderColor: 'primary.contrastText',
-            }}
-            component="form"
-            maxWidth="md"
+          <AdventureItem
             key={field.id}
-          >
-            <Grid container spacing={1}>
-              <Grid item xs={4} sm={2} md={2} textAlign="center">
-                <ButtonGroup variant="text" size="large">
-                  <IconButton onClick={() => handleRemoveAdventure(index)}>
-                    <DeleteIcon color="error" />
-                  </IconButton>
-
-                  {index !== 0 ? (
-                    <IconButton onClick={() => up(index)}>
-                      <ArrowDropUpIcon color="warning" />
-                    </IconButton>
-                  ) : null}
-
-                  {index !== fieldsAdventures.length - 1 ? (
-                    <IconButton onClick={() => down(index)}>
-                      <ArrowDropDownIcon color="warning" />
-                    </IconButton>
-                  ) : null}
-                </ButtonGroup>
-              </Grid>
-              <Grid item xs={8} sm={4} md={4} alignSelf="center" textAlign="center">
-                <TextInput
-                  watch={watch}
-                  register={register}
-                  name={`adventures.${index}.name`}
-                  variant="standard"
-                  focused={order === index}
-                  InputProps={{
-                    readOnly: true,
-                  }}
-                />
-              </Grid>
-              <Grid item xs={4} sm={2} md={2} alignSelf="center" textAlign="center">
-                <TextInput
-                  watch={watch}
-                  register={register}
-                  name={`adventures.${index}.initiative`}
-                  variant="standard"
-                  focused={order === index}
-                  InputProps={{
-                    readOnly: true,
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <PushPinIcon color="info" />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
-              <Grid item xs={4} sm={2} md={2} alignSelf="center" textAlign="center">
-                <TextInput
-                  watch={watch}
-                  register={register}
-                  errors={errors?.adventures?.[index]?.life}
-                  name={`adventures.${index}.life`}
-                  variant="standard"
-                  focused={order === index}
-                  type="number"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <FavoriteIcon color="error" />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
-              <Grid item xs={4} sm={2} md={2} alignSelf="center" textAlign="center">
-                <TextInput
-                  watch={watch}
-                  register={register}
-                  errors={errors?.adventures?.[index]?.armor}
-                  name={`adventures.${index}.armor`}
-                  variant="standard"
-                  focused={order === index}
-                  type="number"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <ShieldIcon color="warning" />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
-            </Grid>
-          </Container>
+            watch={watch}
+            register={register}
+            errors={errors}
+            setValue={setValue}
+            index={index}
+            order={order}
+            up={up}
+            down={down}
+            handleRemoveAdventure={handleRemoveAdventure}
+            fieldsAdventures={fieldsAdventures}
+          />
         ))}
       </Box>
     </Box>

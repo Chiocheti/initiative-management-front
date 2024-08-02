@@ -53,10 +53,15 @@ export default function InitiativeList() {
 
   useEffect(() => {
     function findData() {
-      const adventures = JSON.parse(Cookies.get('adventures'));
-      savedAdventuresList.current = JSON.parse(Cookies.get('savedAdventures'));
+      const getAdventures = Cookies.get('adventures');
+      const getSavedAdventuresList = Cookies.get('savedAdventures');
 
-      setValue('adventures', adventures);
+      if (getAdventures) {
+        setValue('adventures', JSON.parse(getAdventures));
+      }
+      if (getSavedAdventuresList) {
+        savedAdventuresList.current = JSON.parse(getSavedAdventuresList);
+      }
     }
 
     findData();

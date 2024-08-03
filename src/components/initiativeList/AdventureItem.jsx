@@ -163,7 +163,7 @@ export default function AdventureItem({
           />
         </Grid>
 
-        <Grid item xs={4} sm={2} md={3.5} alignSelf="center" textAlign="center">
+        <Grid item xs={12} sm={12} md={3.5} alignSelf="center" textAlign="center">
           <FormControl fullWidth focused={order === index}>
             <Select
               multiple

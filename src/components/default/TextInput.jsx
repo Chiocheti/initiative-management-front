@@ -7,7 +7,7 @@ export default function TextInput({ watch, register, errors, name, label, varian
       label={label}
       variant={variant}
       fullWidth
-      focused={focused}
+      focused={!!focused}
       error={!!errors}
       InputLabelProps={{
         shrink: !!watch(name),

@@ -171,7 +171,7 @@ export default function AddNewList({ addItem, saveData, savedAdventuresList }) {
             />
           </Grid>
 
-          <Grid item xs={10} sm={10} md={8}>
+          <Grid item xs={8} sm={10} md={8}>
             <Button text="adicionar" onClick={handleSubmit(pushData)} />
           </Grid>
         </Grid>
